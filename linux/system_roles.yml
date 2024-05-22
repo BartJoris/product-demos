@@ -2,13 +2,16 @@
 - name: Apply RHEL System Roles
   hosts: all
   become: true
-  vars:
-    system_roles: undef
-
   tasks:
-    - name: Apply System Roles
-      ansible.builtin.include_role:
-        name: "redhat.rhel_system_roles.{{ item }}"
-      loop: "{{ system_roles }}"
-      when:
-        - system_roles | d("") | length > 0
+  - name: Install RHEL/Fedora Web Console (Cockpit)
+    include_role:
+      name: redhat.rhel_system_roles.cockpit
+    vars:
+      cockpit_packages: default
+  - name: Configure Firewall for Web Console
+    include_role:
+      name: redhat.rhel_system_roles.firewall
+    vars:
+      firewall:
+        service: cockpit
+        state: enabled
