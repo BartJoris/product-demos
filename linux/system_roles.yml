@@ -1,17 +1,13 @@
 ---
-- name: Apply RHEL System Roles
+- name: Demo RHEL system roles
   hosts: all
   become: true
   tasks:
-  - name: Install RHEL/Fedora Web Console (Cockpit)
+  - name: Configure journald
     include_role:
-      name: redhat.rhel_system_roles.cockpit
+      name: redhat.rhel_system_roles.journald
     vars:
-      cockpit_packages: minimal
-  - name: Configure Firewall for Web Console
-    include_role:
-      name: redhat.rhel_system_roles.firewall
-    vars:
-      firewall:
-        service: cockpit
-        state: enabled
+      journald_persistent: true
+      journald_max_disk_size: 2048
+      journald_per_user: true
+      journald_sync_interval: 1
