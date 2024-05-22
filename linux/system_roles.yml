@@ -7,7 +7,7 @@
     include_role:
       name: redhat.rhel_system_roles.cockpit
     vars:
-      cockpit_packages: default
+      cockpit_packages: minimal
   - name: Configure Firewall for Web Console
     include_role:
       name: redhat.rhel_system_roles.firewall
