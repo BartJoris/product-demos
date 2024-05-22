@@ -4,8 +4,6 @@ collections:
     version: 4.5.6
   - name: redhat.rhel_system_roles
     version: 1.23.0
-  - name: redhat.satellite_operations.installer
-    version: 2.1.0
   - name: redhat.insights
     version: 1.2.2
 
